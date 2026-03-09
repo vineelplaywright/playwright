@@ -1,0 +1,20 @@
+{
+    "registration_data":
+    {
+  "userName": "vineelkumar123",
+  "email": "ab1232cd@gmail.com",
+  "password": "vineelS@4",
+  "day": "12",
+  "month": "June",
+  "year": "2020",
+  "firstname": "Vineel",
+  "lastname": "Kumar",
+  "company": "TechNova Solutions",
+  "address1": "123 Green Park Road",
+  "country": "India",
+  "state": "Telangana",
+  "city": "Hyderabad",
+  "zipcode": "500032",
+  "mobile": "+91-9876543210"
+}
+}

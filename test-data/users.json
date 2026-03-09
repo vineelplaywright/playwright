@@ -1,0 +1,12 @@
+{
+  "validUser": {
+    "email": "ab1232cd@gmail.com",
+    "password": "vineelS@4",
+    "username":"vineel"
+  },
+  "adminUser": {
+    "email": "ab1232cd@gmail.com",
+    "password": "Admin123",
+    "username":"vineel"
+  }
+}
