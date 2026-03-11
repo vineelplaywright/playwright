@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
     home = new HomeSteps(page);
 });
 
-test('Register and Login into Account(Deleted if already account exist', async({page})=>{
+test('Register and Login into Account(Deleted if already account exist )', async({page})=>{
   await home.launchApplication();
   const check = await home.checkifaccountexist(users.validUser.username,users.validUser.email);
   if(check)  
