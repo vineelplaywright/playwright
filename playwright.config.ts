@@ -14,6 +14,7 @@ export default defineConfig({
   timeout: 30_000,
   retries: 2,                     // auto-retry flakes in CI
   workers: process.env.CI ? 4 : undefined,
+  //workers:4,
   reporter: [
     ['list'],
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
