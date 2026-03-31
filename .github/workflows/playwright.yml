@@ -57,6 +57,10 @@ jobs:
 
           npx playwright test \
             --grep "@${TEST_SUITE}"
+            
+      - name: Rerun failed tests
+        if: failure()
+        run: npx playwright test --last-failed
 
       - name: Upload Playwright HTML report
         if: always()
