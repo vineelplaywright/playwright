@@ -18,10 +18,10 @@ export default class EditBoxActions extends UIElementActions {
    * @param locator
    * @returns
    */
-  public setLocator(locator: Locator, description: string): EditBoxActions {
+ /* public setLocator(locator: Locator, description: string): EditBoxActions {
     super.setLocator(locator, description);
     return this;
-  }
+  }*/
 
   /**
    * Clear and enter text

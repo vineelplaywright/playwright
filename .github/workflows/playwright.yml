@@ -1,7 +1,28 @@
 name: Playwright CI Pipeline
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment to run tests against"
+        required: true
+        default: "qa"
+        type: choice
+        options:
+          - qa
+          - stage
+          - prod
+
+      suite:
+        description: "Test suite (smoke, regression, sanity)"
+        required: true
+        default: "smoke"
+        type: choice
+        options:
+          - smoke
+          - regression
+          - sanity
+
   push:
     branches: [ "main" ]
   pull_request:
@@ -27,7 +48,15 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        env:
+          TEST_ENV: ${{ github.event.inputs.env }}   # qa / stage / prod
+          TEST_SUITE: ${{ github.event.inputs.suite }}
+        run: |
+          echo "Environment: $TEST_ENV"
+          echo "Suite: $TEST_SUITE"
+
+          npx playwright test \
+            --grep "@${TEST_SUITE}"
 
       - name: Upload Playwright HTML report
         if: always()

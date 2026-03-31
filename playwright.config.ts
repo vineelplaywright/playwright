@@ -1,34 +1,37 @@
 import { defineConfig, devices } from '@playwright/test';
-
 import * as dotenv from 'dotenv';
 
+// Load environment dynamically (default = 'qa')
+const ENV = process.env.TEST_ENV || 'qa';
 
-dotenv.config();
+// Load .env.qa / .env.stage / .env.prod
+dotenv.config({ path: `.env.${ENV}` });
+
 const BASE_URL = process.env.BASE_URL;
 
 if (!BASE_URL) {
-  throw new Error("❌ BASE_URL is missing. Define it in your .env file.");
+  throw new Error(`❌ BASE_URL is missing in .env.${ENV}. Please define it.`);
 }
 
 export default defineConfig({
   timeout: 30_000,
-  retries: 2,                     // auto-retry flakes in CI
+  retries: 2,
   workers: process.env.CI ? 4 : undefined,
-  //workers:4,
+
   reporter: [
     ['list'],
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
-    ['junit', { outputFile: 'test-results/junit.xml' }] // for CI test trends
+    ['junit', { outputFile: 'test-results/junit.xml' }]
   ],
+
   use: {
+    baseURL: BASE_URL,
     trace: 'on-first-retry',
     video: 'retain-on-failure',
-    screenshot: 'only-on-failure',
-    baseURL: process.env.BASE_URL || 'http://localhost:3000'
+    screenshot: 'only-on-failure'
   },
+
   projects: [
-    { name: 'Chromium', use: { ...devices['Desktop Chrome'] } },
-   // { name: 'Firefox',  use: { ...devices['Desktop Firefox'] } },
-    //{ name: 'WebKit',   use: { ...devices['Desktop Safari'] } }
+    { name: 'Chromium', use: { ...devices['Desktop Chrome'] } }
   ]
 });

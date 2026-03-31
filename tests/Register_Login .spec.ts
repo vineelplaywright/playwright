@@ -1,5 +1,5 @@
 import HomeSteps from '../steps/HomeSteps';
-import { test, expect,} from '@playwright/test';
+import { test, expect} from '@playwright/test';
 import users from '../test-data/users.json';
 import registrationdata from '../test-data/registration_data.json'
 
@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
     home = new HomeSteps(page);
 });
 
-test('1 Register and Login into Account(Deleted if already account exist )', async({page})=>{
+test('1 Register and Login into Account(Deleted if already account exist )', { tag: '@smoke' }, async({page})=>{
   await home.launchApplication();
   const check = await home.checkifaccountexist(users.validUser.username,users.validUser.email);
   if(check)  
@@ -29,7 +29,7 @@ test('1 Register and Login into Account(Deleted if already account exist )', asy
     }  
 }) 
 
-test('2 Register and Login into Account(Deleted if already account exist )', async({page})=>{
+test('2 Register and Login into Account(Deleted if already account exist )', {tag: '@regression'}, async({page})=>{
   await home.launchApplication();
   const check = await home.checkifaccountexist(users.validUser.username,users.validUser.email);
   if(check)  
@@ -47,7 +47,7 @@ test('2 Register and Login into Account(Deleted if already account exist )', asy
       
     }  
 }) 
-test('3 Register and Login into Account(Deleted if already account exist )', async({page})=>{
+test('3 Register and Login into Account(Deleted if already account exist )',{tag: '@regression'}, async({page})=>{
   await home.launchApplication();
   const check = await home.checkifaccountexist(users.validUser.username,users.validUser.email);
   if(check)  
@@ -66,7 +66,7 @@ test('3 Register and Login into Account(Deleted if already account exist )', asy
     }  
 }) 
 
-test('4 Register and Login into Account(Deleted if already account exist )', async({page})=>{
+test('4 Register and Login into Account(Deleted if already account exist )',{tag: '@regression'}, async({page})=>{
   await home.launchApplication();
   const check = await home.checkifaccountexist(users.validUser.username,users.validUser.email);
   if(check)  
